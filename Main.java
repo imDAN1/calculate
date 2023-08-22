@@ -18,13 +18,17 @@ public class Main {
         int result = 0;
         String finalRes = null;
         String[] inputString = input.split(" ");
-            try{
+        if(inputString.length > 3) {
+            System.out.println("Неверный формат выражения!");
+            System.exit(0);
+        }else {
+            try {
                 a = Integer.parseInt(inputString[0]);
                 b = Integer.parseInt(inputString[2]);
-                if(a > 10 || a < 0 || b < 0 || b > 10){
+                if (a > 10 || a < 0 || b < 0 || b > 10) {
                     System.out.println("Неверный формат выражения!");
                     System.exit(0);
-                }else {
+                } else {
                     switch (inputString[1]) {
                         case "+" -> result = a + b;
                         case "-" -> result = a - b;
@@ -33,7 +37,7 @@ public class Main {
                     }
                     finalRes = "Результат: " + Integer.toString(result);
                 }
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 try {
                     RimNum rimNum1 = RimNum.valueOf(inputString[0]);
                     RimNum rimNum2 = RimNum.valueOf(inputString[2]);
@@ -57,11 +61,12 @@ public class Main {
                         RimNum[] rimNums = RimNum.values();
                         finalRes = "Результат: " + String.valueOf(rimNums[result - 1]);
                     }
-                }catch (IllegalArgumentException z) {
+                } catch (IllegalArgumentException z) {
                     System.out.println("Неверный формат выражения!");
                     System.exit(0);
                 }
             }
+        }
             return finalRes;
     }
 }
